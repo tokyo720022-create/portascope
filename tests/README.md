@@ -1,20 +1,7 @@
-PortaScope Test Suite
+# PortaScope Test Suite
 
-This directory contains automated tests for PortaScope's portability rules.
+Automated tests for portability rules and the safety contract.
 
-Planned Coverage
+Current coverage includes case collisions, reserved Windows device names, invalid filename characters, trailing spaces/dots, conservative path-length warnings, a read-only scan, symlink-safe traversal, and Markdown/JSON CLI output.
 
-- Filename collisions across operating-system profiles
-- Reserved names and invalid filename characters
-- Path-length warnings
-- Read-only scanning behaviour
-- Markdown and JSON report output
-
-Testing Principles
-
-- Use temporary directories and synthetic filenames.
-- Never modify or delete files in a user's scanned project.
-- Test target operating systems through explicit, deterministic profiles.
-- Include both problematic and safe examples for every rule.
-
-The test suite will expand alongside the implementation. A rule is not considered implemented until executable tests verify its behaviour.
+Tests use temporary directories and synthetic filenames. Target-profile tests should remain deterministic across host operating systems. Every new rule should include both positive and negative examples. Do not mark planned behaviour as implemented until executable tests pass.

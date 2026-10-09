@@ -1,52 +1,42 @@
 # Initial Architecture
 
-## Goals
+## Implemented in this starter
 
-A small, offline-first Python CLI that scans a directory, evaluates target-platform rules, and emits explainable findings without modifying the inspected files.
+- Python CLI for local scanning
+- Read-only directory traversal without following symlinks
+- Target profiles for Windows, Linux, and common default macOS behaviour
+- Deterministic filename/path checks
+- Markdown and JSON reports
 
 ## Pipeline
 
-1. **CLI** parses the source path, target profile, output format, and optional fix-preview request.
-2. **Scanner** walks the tree without following symlinks by default and records relative paths and relevant metadata.
-3. **Rule engine** runs deterministic checks against explicit target profiles.
-4. **Finding model** normalizes rule ID, severity, paths, target, explanation, and remediation.
-5. **Reporter** writes Markdown or JSON to stdout or a user-selected destination outside the scanned tree by default.
-6. **Fix planner** proposes a preview/diff only. A future apply command must be separate, opt-in, and guarded by confirmation.
+1. **CLI** accepts a scan root, target profile, and report format.
+2. **Scanner** returns sorted relative paths without reading file contents or following symlinks.
+3. **Rule engine** evaluates paths against the chosen target profile.
+4. **Finding model** records rule ID, severity, affected paths, explanation, and recommendation.
+5. **Reporter** produces Markdown or JSON output.
+6. **Fix planner** will propose a preview; a future apply command must be separate, explicit, confirmed, and revalidated.
 
 ## Proposed package layout
 
 ```text
 src/portascope/
-  __init__.py
   cli.py
-  scanner.py
-  models.py
-  targets.py
   engine.py
-  rules/
-    __init__.py
-    filenames.py
-    paths.py
-    metadata.py
-  reporters/
-    __init__.py
-    markdown.py
-    json_report.py
-  fixes/
-    __init__.py
-    planner.py
+  models.py
+  scanner.py
+  targets.py
+  rules/filenames.py
 ```
-
-Only create modules when the corresponding milestone starts; avoid empty placeholder modules that suggest unimplemented functionality exists.
 
 ## Dependencies
 
-Keep runtime dependencies at zero initially. Use pytest and Ruff as development-only tools.
+Zero runtime dependencies. Pytest and Ruff are development-only tools.
 
-## Non-goals for v1
+## Non-goals for the initial slice
 
 - AI analysis
-- Cloud scanning or telemetry
-- Automatic modifications during scanning
-- Guaranteeing exact behaviour of every filesystem or sync tool
-- Running code from the scanned project
+- Network access, cloud scans, or telemetry
+- Modifying scanned files during scanning
+- Guaranteeing the exact behaviour of every filesystem or transfer utility
+- Running code from scanned projects
