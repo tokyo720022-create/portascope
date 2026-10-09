@@ -96,10 +96,16 @@ The project is in its design stage, so early contributions should focus on well-
 
 Contribution guidelines and a code of conduct will be added as the project matures.
 
-## License
-
-A license has not been selected yet. Do not assume the repository is licensed for reuse until a license file is added.
-
 ---
 
 **PortaScope — portability problems, spotted before the move.**
+
+📬 Contact & Connect
+
+Have questions, suggestions, or want permission to use PortaScope? Get in touch.
+
+- Email: "lisabp720@gmail.com" (mailto:lisabp720@gmail.com)
+- Discord: "orewatokyo720_47200"
+- Discord Profile: To be added
+
+For permission requests, please describe your intended use, including any plans to modify or redistribute the project.
